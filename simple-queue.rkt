@@ -10,6 +10,9 @@
   (let ([nq (queue-normalize q)])
     (cond ((null? (cdr nq)) (error "empty queue."))
           (else (cons (cons (car nq) (cddr nq)) (cadr nq))))))
+
+(define (queue-empty? q)
+  (null? (cdr (queue-normalize q))))
                         
 (define (queue-print q)
   (define (print-list l) 
@@ -31,4 +34,4 @@
 (set! t (car (queue-pop t))) (queue-print t)
 (set! t (car (queue-pop t))) (queue-print t)
 (set! t (car (queue-pop t))) (queue-print t)
-(set! t (car (queue-pop t))) (queue-print t)
+(if (queue-empty? t) (print "queue is empty.") (set! t (car (queue-pop t)))) (queue-print t)
